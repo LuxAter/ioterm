@@ -68,7 +68,7 @@ setup(
     ],
 
     # What does your project relate to?
-    keywords='setuptools development',
+    keywords='development tui',
 
     # You can just specify the packages manually here if your project is
     # simple. Or you can use find_packages().
@@ -96,7 +96,6 @@ setup(
     # If there are data files included in your packages that need to be
     # installed, specify them here.  If using Python 2.6 or less, then these
     # have to be included in MANIFEST.in as well.
-    package_data={'': extra_files},
 
     # Although 'package_data' is the preferred approach, in some case you may
     # need to place data files outside of your packages. See:
@@ -107,6 +106,4 @@ setup(
     # To provide executable scripts, use entry points in preference to the
     # "scripts" keyword. Entry points provide cross-platform support and allow
     # pip to create the appropriate form of executable for the target platform.
-    entry_points={
-        'console_scripts': ['Ioterm = ioterm.ioterm:main']
-    },)
+    )
