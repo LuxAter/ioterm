@@ -1,3 +1,5 @@
+import ioterm.color as color
+
 import os
 import math
 
@@ -83,23 +85,38 @@ def truncate(string, length):
     return string
 
 
-def columnify(iterable):
-    strings = [repr(x) for x in iterable]
-    widest = max(len(x) for x in strings)
-    padded = [x.ljust(widest) for x in strings]
-    return padded
-
-
-def colprint(iterable, width=-1):
+def colprint(iterable, width=-1, zebra=False, single_col=False, force_width=False, alignment='l'):
+    if len(iterable) == 0:
+        return
     if width == -1:
         width = int(os.popen('stty size', 'r').read().split()[1])
-    columns = columnify(iterable)
-    colwidth = len(columns[0]) + 2
-    perline = (width - 4) // colwidth
-    for i, column in enumerate(columns):
-        print(column, end='  ')
-        if i % perline == perline - 1:
-            print()
+    if single_col is True:
+        for i, item in enumerate(iterable):
+            if zebra is True and i % 2 != 0:
+                print(color.get_color(0, True),end='')
+            print(print_aligned(item, alignment, width))
+            if zebra is True and i % 2 != 0:
+                print(color.get_color('default', True),end='')
+    else:
+        widest = max(display_length(x) for x in iterable)
+        colwidth = widest + 2
+        perline = (width - 4) // colwidth
+        if force_width is True and colwidth * perline < width:
+            widest = int(((width) / perline) - 2)
+        zebra_count = 0
+        if zebra is True and zebra_count % 2 != 0:
+            print(color.get_color(0, True),end='')
+        for i, column in enumerate(iterable):
+            print(print_aligned(column, alignment, widest + 2), end='')
+            if i % perline == perline - 1:
+                if zebra is True and zebra_count % 2 != 0:
+                    print(color.get_color('default', True),end='')
+                print()
+                zebra_count += 1
+                if zebra is True and zebra_count % 2 != 0:
+                    print(color.get_color(0, True),end='')
+    if zebra is True:
+        print(color.get_color('default', True),end='')
     print()
 
 
