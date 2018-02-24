@@ -26,9 +26,9 @@ class Table(object):
 
     def update_alignment(self):
         if self.col_pri:
-            tmp = [[''] * self.size_data["rows"]] * self.size_data["cols"]
+            tmp = [[''] * self.size_data["rows"] for _ in range(self.size_data["cols"])]
         else:
-            tmp = [[''] * self.size_data["cols"]] * self.size_data["rows"]
+            tmp = [[''] * self.size_data["cols"] for _ in range(self.size_data["rows"])]
         for i, (a, b) in enumerate(zip(self.alignment, tmp)):
             for j, (c, d) in enumerate(zip(a, b)):
                 if c:

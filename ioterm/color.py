@@ -39,7 +39,8 @@ def get_color_ability():
 
 
 def get_color_name(color):
-    colors = {'black': 0, 'red': 1, 'green': 2, 'yellow': 3, 'blue': 4, 'magenta': 5, 'cyan': 6, 'light_grey': 7, 'dark_grey': 8, 'light_red': 9, 'light_green': 10, 'light_yellow': 11, 'light_blue': 12, 'light_magenta': 13, 'light_cyan': 14, 'white': 15}
+    colors = {'black': 0, 'red': 1, 'green': 2, 'yellow': 3, 'blue': 4, 'magenta': 5, 'cyan': 6, 'light_grey': 7, 'dark_grey': 8,
+              'light_red': 9, 'light_green': 10, 'light_yellow': 11, 'light_blue': 12, 'light_magenta': 13, 'light_cyan': 14, 'white': 15}
     if color in colors:
         return colors[color]
     return None
